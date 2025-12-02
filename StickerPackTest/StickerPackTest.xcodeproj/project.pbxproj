@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StickerPackTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A19FC072EDEE56A00E66546 /* StickerPackTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerPackTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D4900528341EEED624F006 /* Pods-StickerPackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickerPackTest.release.xcconfig"; path = "Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest.release.xcconfig"; sourceTree = "<group>"; };
+		E840A283CE30874DB3683CD6 /* Pods-StickerPackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickerPackTest.debug.xcconfig"; path = "Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,17 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B351CD8BF3385B3F31B52E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6A19FBFE2EDEE56A00E66546 = {
 			isa = PBXGroup;
 			children = (
 				6A19FC092EDEE56A00E66546 /* StickerPackTest */,
 				6A19FC082EDEE56A00E66546 /* Products */,
+				8C851175DBDD32DE2426E54A /* Pods */,
+				5B351CD8BF3385B3F31B52E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +76,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8C851175DBDD32DE2426E54A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E840A283CE30874DB3683CD6 /* Pods-StickerPackTest.debug.xcconfig */,
+				84D4900528341EEED624F006 /* Pods-StickerPackTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A19FC1A2EDEE56C00E66546 /* Build configuration list for PBXNativeTarget "StickerPackTest" */;
 			buildPhases = (
+				2E535008421EB5E7B19B6660 /* [CP] Check Pods Manifest.lock */,
 				6A19FC032EDEE56A00E66546 /* Sources */,
 				6A19FC042EDEE56A00E66546 /* Frameworks */,
 				6A19FC052EDEE56A00E66546 /* Resources */,
+				04B123018DC72972787A2129 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				6A19FC092EDEE56A00E66546 /* StickerPackTest */,
 			);
 			name = StickerPackTest;
-			packageProductDependencies = (
-			);
 			productName = StickerPackTest;
 			productReference = 6A19FC072EDEE56A00E66546 /* StickerPackTest.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04B123018DC72972787A2129 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E535008421EB5E7B19B6660 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StickerPackTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6A19FC032EDEE56A00E66546 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,6 +213,7 @@
 /* Begin XCBuildConfiguration section */
 		6A19FC1B2EDEE56C00E66546 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E840A283CE30874DB3683CD6 /* Pods-StickerPackTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -150,7 +224,6 @@
 				INFOPLIST_FILE = StickerPackTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -168,6 +241,7 @@
 		};
 		6A19FC1C2EDEE56C00E66546 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D4900528341EEED624F006 /* Pods-StickerPackTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -178,7 +252,6 @@
 				INFOPLIST_FILE = StickerPackTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -232,7 +305,7 @@
 				DEVELOPMENT_TEAM = NU9QMJ4324;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -296,7 +369,7 @@
 				DEVELOPMENT_TEAM = NU9QMJ4324;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
