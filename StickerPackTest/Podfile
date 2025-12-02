@@ -1,0 +1,16 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'StickerPackTest' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  pod 'SDWebImage'
+  pod 'SDWebImageWebPCoder'
+
+  # Lottie
+  pod 'lottie-ios'
+
+  # Pods for StickerPackTest
+
+end
