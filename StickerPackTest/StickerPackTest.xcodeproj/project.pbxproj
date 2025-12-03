@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6ABC6ED82EE076D1005D7E4B /* rlottie.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABC6ED72EE076D1005D7E4B /* rlottie.xcframework */; };
 		FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StickerPackTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A19FC072EDEE56A00E66546 /* StickerPackTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerPackTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ABC6ED72EE076D1005D7E4B /* rlottie.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = rlottie.xcframework; path = ../../rlottie/build/xcframework/xcode_project/rlottie.xcframework; sourceTree = "<group>"; };
 		84D4900528341EEED624F006 /* Pods-StickerPackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickerPackTest.release.xcconfig"; path = "Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest.release.xcconfig"; sourceTree = "<group>"; };
 		E840A283CE30874DB3683CD6 /* Pods-StickerPackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickerPackTest.debug.xcconfig"; path = "Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */,
+				6ABC6ED82EE076D1005D7E4B /* rlottie.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +56,7 @@
 		5B351CD8BF3385B3F31B52E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6ABC6ED72EE076D1005D7E4B /* rlottie.xcframework */,
 				4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */,
 			);
 			name = Frameworks;
@@ -122,6 +126,7 @@
 				TargetAttributes = {
 					6A19FC062EDEE56A00E66546 = {
 						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
 					};
 				};
 			};
@@ -217,9 +222,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU9QMJ4324;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libwebp\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StickerPackTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -231,9 +245,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.testUI.first.StickerPackTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "StickerPackTest/StickerPackTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -245,9 +262,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU9QMJ4324;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libwebp\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StickerPackTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -259,9 +285,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.testUI.first.StickerPackTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -327,6 +355,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/StickerPackTest/StickerPackTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +413,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/StickerPackTest/StickerPackTest-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
