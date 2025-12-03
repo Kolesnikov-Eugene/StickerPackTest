@@ -16,6 +16,7 @@ class SPCollectionViewController: UICollectionViewController {
     enum StickerMode {
         case webp
         case lottie
+		case rlottie
     }
     
     /// Current sticker mode. Determines which cell type to use.
@@ -103,6 +104,7 @@ class SPCollectionViewController: UICollectionViewController {
         // Register both cell types
         collectionView.register(SPWebpCollectionViewCell.self, forCellWithReuseIdentifier: SPWebpCollectionViewCell.reuseIdentifier)
         collectionView.register(SPLottieCollectionViewCell.self, forCellWithReuseIdentifier: SPLottieCollectionViewCell.reuseIdentifier)
+		collectionView.register(RLottieCollectionViewCell.self, forCellWithReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier)
         
         collectionView.delegate = self
         
@@ -143,6 +145,13 @@ class SPCollectionViewController: UICollectionViewController {
                 ) as! SPLottieCollectionViewCell
                 cell.configure(with: item.url)
                 return cell
+			case .rlottie:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier,
+					for: indexPath
+				) as! RLottieCollectionViewCell
+				cell.configure(with: item.url)
+				return cell
             }
         }
         
@@ -202,6 +211,8 @@ class SPCollectionViewController: UICollectionViewController {
             urls = loadWebPURLs()
         case .lottie:
             urls = loadLottieURLs()
+		case .rlottie:
+			urls = loadRlottieURLs()
         }
         
         // Store all URLs (like receiving from backend)
@@ -365,33 +376,51 @@ class SPCollectionViewController: UICollectionViewController {
         // Add remote Lottie .tgs file URLs (Telegram sticker format)
         // Replace these with actual .tgs URLs from your backend/CDN
         let remoteTGSURLs: [String] = [
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test1.tgs",
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test2.tgs",
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test3.tgs",
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test4.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
-			"file:///Users/e.a.kolesnikov/webp_stickers/123.tgs",
+			
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+			
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+			
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+			
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+			
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
 			
         ]
         
@@ -405,6 +434,23 @@ class SPCollectionViewController: UICollectionViewController {
         
         return urls
     }
+	
+	private func loadRlottieURLs() -> [URL] {
+		var urls: [URL] = []
+		
+		let remoteRLottieUrls: [String] = [
+			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+		]
+		
+		urls.append(contentsOf: remoteRLottieUrls.compactMap { URL(string: $0) })
+		return urls
+	}
     
     // MARK: - Dynamic Loading
     
