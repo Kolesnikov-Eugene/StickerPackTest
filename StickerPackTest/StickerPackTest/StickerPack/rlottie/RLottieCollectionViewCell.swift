@@ -13,6 +13,8 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 	
 	static let reuseIdentifier = "RLottieCollectionViewCell"
 	
+	var scale = 1.5
+	
 	private let imageView: UIImageView = {
 		let view = UIImageView()
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -184,13 +186,13 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		guard size.width > 0 && size.height > 0 else {
 			// If size is zero, use a default size
 			let defaultSize = CGSize(width: 256, height: 256)
-			if let image = anim.render(frame: frameIndex, size: defaultSize) {
+			if let image = anim.render(frame: frameIndex, size: defaultSize, scale: scale) {
 				imageView.image = image
 			}
 			return
 		}
 		
-		if let image = anim.render(frame: frameIndex, size: size) {
+		if let image = anim.render(frame: frameIndex, size: size, scale: scale) {
 			imageView.image = image
 		}
 	}

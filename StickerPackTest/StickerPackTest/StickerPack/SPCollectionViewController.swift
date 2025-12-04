@@ -239,8 +239,8 @@ class SPCollectionViewController: UICollectionViewController {
         case .lottie:
             urls = loadLottieURLs()
 		case .rlottie:
-			urls = loadRlottieURLs()
-//			urls = loadLocalLottieURLs()
+//			urls = loadRlottieURLs()
+			urls = loadLocalLottieURLs()
 		case .rlottieMetal:
 			urls = loadRlottieURLs()
 		case .rlottiev2:

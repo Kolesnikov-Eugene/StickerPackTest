@@ -42,10 +42,10 @@ final class RLottieAnimation {
 		}
 	}
 	
-	func render(frame index: Int, size: CGSize) -> UIImage? {
+	func render(frame index: Int, size: CGSize, scale: Double) -> UIImage? {
 		guard let ref = ref else { return nil }
 		
-		let scale = 1.5
+//		let scale = 1.5
 		
 		let width = Int(size.width * scale)
 		let height = Int(size.height * scale)
