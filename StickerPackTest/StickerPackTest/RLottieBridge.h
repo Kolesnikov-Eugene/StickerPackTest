@@ -29,6 +29,12 @@ int rlottie_frame_count(RLottieAnimationRef anim);
 /// Destroy animation
 void rlottie_destroy(RLottieAnimationRef anim);
 
+/// Get intrinsic animation width
+int rlottie_animation_width(RLottieAnimationRef anim);
+
+/// Get intrinsic animation height
+int rlottie_animation_height(RLottieAnimationRef anim);
+
 #ifdef __cplusplus
 }
 #endif

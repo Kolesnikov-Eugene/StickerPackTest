@@ -26,6 +26,9 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 	private var frameIndex = 0
 	private var currentLoadTask: URLSessionDataTask?
 	
+	private var lastFrameTime: CFTimeInterval = 0
+	private var targetFPS: Double = 30
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupUI()
@@ -36,7 +39,8 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 	}
 	
 	private func setupUI() {
-		backgroundColor = .systemGray6
+//		backgroundColor = .systemGray6
+		backgroundColor = .clear
 		layer.cornerRadius = 8
 		layer.masksToBounds = true
 		
@@ -62,7 +66,7 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		
 		// Check file extension to determine how to load
 		let pathExtension = url.pathExtension.lowercased()
-		
+//		loadJSONFile(from: url)
 		if pathExtension == "tgs" {
 			// .tgs files are gzipped JSON files (Telegram sticker format)
 			loadTGSFile(from: url)
@@ -116,6 +120,7 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 			// Remote URL
 			let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
 				guard let self = self else { return }
+				print("responce \(String(describing: response))")
 				
 				if let error = error {
 					print("Error loading JSON file: \(error.localizedDescription)")
@@ -157,7 +162,10 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		tick()
 		
 		displayLink = CADisplayLink(target: self, selector: #selector(tick))
+//		displayLink = CADisplayLink(target: self, selector: #selector(tick(link:)))
+		
 		displayLink?.add(to: .main, forMode: .common)
+//		tick(link: displayLink!)
 	}
 	
 	private func stopAnimation() {
@@ -171,6 +179,7 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		
 		frameIndex = (frameIndex + 1) % anim.frameCount
 		
+		print("frame index - \(frameIndex)")
 		let size = contentView.bounds.size
 		guard size.width > 0 && size.height > 0 else {
 			// If size is zero, use a default size

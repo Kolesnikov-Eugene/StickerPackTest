@@ -52,8 +52,21 @@ void rlottie_render_frame(RLottieAnimationRef ref,
 {
 	if (!ref || !bufferRGBA) return;
 
-	auto anim = reinterpret_cast<std::shared_ptr<Animation>*>(ref);
-	if (!anim || !*anim) return;
+	// Use a local copy of the shared_ptr to ensure it stays alive during rendering
+	// This prevents the animation from being destroyed while we're rendering
+	std::shared_ptr<Animation> animCopy;
+	
+	{
+		auto animPtr = reinterpret_cast<std::shared_ptr<Animation>*>(ref);
+		if (!animPtr) return;
+		
+		// Make a copy of the shared_ptr - this ensures the Animation object stays alive
+		// even if the original shared_ptr is deleted
+		animCopy = *animPtr;
+	}
+	
+	// Now we can safely use animCopy even if the original was deleted
+	if (!animCopy) return;
 
 	uint32_t* buffer32 = reinterpret_cast<uint32_t*>(bufferRGBA);
 	Surface surface(buffer32,
@@ -61,7 +74,7 @@ void rlottie_render_frame(RLottieAnimationRef ref,
 					static_cast<size_t>(height),
 					static_cast<size_t>(width * 4));
 
-	(*anim)->renderSync(static_cast<size_t>(frameNumber), surface);
+	animCopy->renderSync(static_cast<size_t>(frameNumber), surface);
 }
 
 int rlottie_frame_count(RLottieAnimationRef ref) {
@@ -78,6 +91,30 @@ void rlottie_destroy(RLottieAnimationRef ref) {
 
 	auto anim = reinterpret_cast<std::shared_ptr<Animation>*>(ref);
 	delete anim;
+}
+
+int rlottie_animation_width(RLottieAnimationRef ref) {
+	if (!ref) return 0;
+
+	auto anim = reinterpret_cast<std::shared_ptr<Animation>*>(ref);
+	if (!anim || !*anim) return 0;
+
+	size_t width = 0;
+	size_t height = 0;
+	(*anim)->size(width, height);
+	return static_cast<int>(width);
+}
+
+int rlottie_animation_height(RLottieAnimationRef ref) {
+	if (!ref) return 0;
+
+	auto anim = reinterpret_cast<std::shared_ptr<Animation>*>(ref);
+	if (!anim || !*anim) return 0;
+
+	size_t width = 0;
+	size_t height = 0;
+	(*anim)->size(width, height);
+	return static_cast<int>(height);
 }
 
 

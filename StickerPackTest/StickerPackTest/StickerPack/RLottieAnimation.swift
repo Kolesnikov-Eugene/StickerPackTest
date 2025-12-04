@@ -13,6 +13,8 @@ final class RLottieAnimation {
 	var ref: UnsafeMutableRawPointer?
 	let frameCount: Int
 	
+	var fps: Int = 0
+	
 	init?(data: Data) {
 		var animationRef: UnsafeMutableRawPointer?
 		
@@ -25,6 +27,8 @@ final class RLottieAnimation {
 		guard let animationRef = animationRef else { return nil }
 		self.ref = animationRef
 		self.frameCount = Int(rlottie_frame_count(animationRef))
+		
+		self.fps = Int(30)
 		
 		if frameCount == 0 {
 			rlottie_destroy(animationRef)
@@ -41,7 +45,7 @@ final class RLottieAnimation {
 	func render(frame index: Int, size: CGSize) -> UIImage? {
 		guard let ref = ref else { return nil }
 		
-		let scale = 2.0
+		let scale = 1.5
 		
 		let width = Int(size.width * scale)
 		let height = Int(size.height * scale)

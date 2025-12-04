@@ -18,6 +18,8 @@ class SPCollectionViewController: UICollectionViewController {
         case lottie
 		case rlottie
 		case rlottieMetal
+		case rlottiev2
+		case rlottieFast
     }
     
     /// Current sticker mode. Determines which cell type to use.
@@ -107,6 +109,8 @@ class SPCollectionViewController: UICollectionViewController {
         collectionView.register(SPLottieCollectionViewCell.self, forCellWithReuseIdentifier: SPLottieCollectionViewCell.reuseIdentifier)
 		collectionView.register(RLottieCollectionViewCell.self, forCellWithReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier)
 		collectionView.register(RLottieMetalCollectionViewCell.self, forCellWithReuseIdentifier: RLottieMetalCollectionViewCell.reuseIdentifier)
+		collectionView.register(RLottieCollectionViewCellV2.self, forCellWithReuseIdentifier: RLottieCollectionViewCellV2.reuseIdentifier)
+		collectionView.register(RLottieCollectionViewCellFast.self, forCellWithReuseIdentifier: RLottieCollectionViewCellFast.reuseIdentifier)
         
         collectionView.delegate = self
         
@@ -159,6 +163,20 @@ class SPCollectionViewController: UICollectionViewController {
 					withReuseIdentifier: RLottieMetalCollectionViewCell.reuseIdentifier,
 					for: indexPath
 				) as! RLottieMetalCollectionViewCell
+				cell.configure(with: item.url)
+				return cell
+			case .rlottiev2:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: RLottieCollectionViewCellV2.reuseIdentifier,
+					for: indexPath
+				) as! RLottieCollectionViewCellV2
+				cell.configure(with: item.url)
+				return cell
+			case .rlottieFast:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: RLottieCollectionViewCellFast.reuseIdentifier,
+					for: indexPath
+				) as! RLottieCollectionViewCellFast
 				cell.configure(with: item.url)
 				return cell
             }
@@ -222,7 +240,12 @@ class SPCollectionViewController: UICollectionViewController {
             urls = loadLottieURLs()
 		case .rlottie:
 			urls = loadRlottieURLs()
+//			urls = loadLocalLottieURLs()
 		case .rlottieMetal:
+			urls = loadRlottieURLs()
+		case .rlottiev2:
+			urls = loadRlottieURLs()
+		case .rlottieFast:
 			urls = loadRlottieURLs()
         }
         
@@ -502,11 +525,143 @@ class SPCollectionViewController: UICollectionViewController {
 			"file:///Users/e.a.kolesnikov/webp_stickers/s18.tgs",
 			"file:///Users/e.a.kolesnikov/webp_stickers/s19.tgs",
 			"file:///Users/e.a.kolesnikov/webp_stickers/s20.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d1.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d2.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d3.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d4.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d5.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d6.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d7.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d8.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d9.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d10.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d11.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d12.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d13.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d14.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d15.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d16.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d17.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d18.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d19.tgs",
+			"file:///Users/e.a.kolesnikov/webp_stickers/d20.tgs",
 			
 		]
 		
 		urls.append(contentsOf: remoteRLottieUrls.compactMap { URL(string: $0) })
+		print(urls.count)
 		return urls
+	}
+	
+	private func loadLocalLottieURLs() -> [URL] {
+		var urls: [URL] = []
+		
+		// Load from local bundle "stickers" folder first
+		urls.append(contentsOf: loadLocalStickersFromBundle())
+		
+		// Optionally add remote URLs if needed
+		// let remoteRLottieUrls: [String] = [...]
+		// urls.append(contentsOf: remoteRLottieUrls.compactMap { URL(string: $0) })
+		
+		return urls
+	}
+	
+	/// Loads sticker files (.tgs and .json) from the local "stickers" folder in the app bundle
+	/// Uses Bundle API to find files, which works even if folder structure isn't preserved
+	private func loadLocalStickersFromBundle() -> [URL] {
+		var urls: [URL] = []
+		
+		// Method 1: Try to find files using Bundle API (works if files are in bundle root)
+		// This finds files even if the folder structure isn't preserved
+		if let bundlePath = Bundle.main.resourcePath {
+			let fileManager = FileManager.default
+			
+			// Try to find all .tgs and .json files in the bundle
+			// First, try the stickers folder approach
+			let stickersPath = (bundlePath as NSString).appendingPathComponent("stickers")
+			var isDirectory: ObjCBool = false
+			
+			if fileManager.fileExists(atPath: stickersPath, isDirectory: &isDirectory), isDirectory.boolValue {
+				// Folder exists, use it
+				if let files = findStickerFiles(in: URL(fileURLWithPath: stickersPath)) {
+					urls.append(contentsOf: files)
+				}
+			} else {
+				// Folder doesn't exist, try to find files directly in bundle
+				// This happens when files are added individually, not as a folder
+				print("'stickers' folder not found, searching bundle for .tgs and .json files...")
+				
+				// Search for files with .tgs and .json extensions in bundle
+				if let bundleURL = Bundle.main.resourceURL,
+				   let allFiles = try? fileManager.contentsOfDirectory(
+					at: bundleURL,
+					includingPropertiesForKeys: [.isRegularFileKey],
+					options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants]
+				   ) {
+					let stickerFiles = allFiles.filter { url in
+						let ext = url.pathExtension.lowercased()
+						return ext == "tgs" || ext == "json"
+					}
+					urls.append(contentsOf: stickerFiles)
+					print("Found \(stickerFiles.count) sticker files in bundle root")
+				}
+				
+				// Also try using Bundle.main.path(forResource:ofType:) for known files
+				// This is a fallback that works even if folder structure isn't preserved
+				let knownFiles = [
+					"money", "angry", "flashbacks", "hi", "like", "smoke", "win",
+					"a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10",
+					"a11", "a12", "a13", "a14", "a15", "a16", "a17", "a18",
+					"s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10",
+					"s11", "s12", "s13", "s14", "s15", "s16", "s17", "s18", "s19", "s20",
+					"123", "test1", "test2", "test3", "test4", "new"
+				]
+				
+				for fileName in knownFiles {
+					// Try .tgs first
+					if let path = Bundle.main.path(forResource: fileName, ofType: "tgs") {
+						urls.append(URL(fileURLWithPath: path))
+					}
+					// Try .json
+					if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
+						urls.append(URL(fileURLWithPath: path))
+					}
+				}
+			}
+		}
+		
+		// Remove duplicates and sort
+		let uniqueURLs = Array(Set(urls))
+		let sortedFiles = uniqueURLs.sorted { $0.lastPathComponent < $1.lastPathComponent }
+		
+		print("Loaded \(sortedFiles.count) sticker files from bundle")
+		return sortedFiles
+	}
+	
+	/// Recursively finds all .tgs and .json files in a directory
+	private func findStickerFiles(in directory: URL) -> [URL]? {
+		var files: [URL] = []
+		
+		guard let enumerator = FileManager.default.enumerator(
+			at: directory,
+			includingPropertiesForKeys: [.isRegularFileKey, .isDirectoryKey],
+			options: [.skipsHiddenFiles]
+		) else {
+			return nil
+		}
+		
+		for case let fileURL as URL in enumerator {
+			// Check if it's a regular file (not a directory)
+			if let resourceValues = try? fileURL.resourceValues(forKeys: [.isRegularFileKey]),
+			   resourceValues.isRegularFile == true {
+				let pathExtension = fileURL.pathExtension.lowercased()
+				if pathExtension == "tgs" || pathExtension == "json" {
+					files.append(fileURL)
+				}
+			}
+		}
+		
+		return files
 	}
     
     // MARK: - Dynamic Loading
