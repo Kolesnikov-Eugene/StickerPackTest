@@ -17,6 +17,7 @@ class SPCollectionViewController: UICollectionViewController {
         case webp
         case lottie
 		case rlottie
+		case rlottieMetal
     }
     
     /// Current sticker mode. Determines which cell type to use.
@@ -105,6 +106,7 @@ class SPCollectionViewController: UICollectionViewController {
         collectionView.register(SPWebpCollectionViewCell.self, forCellWithReuseIdentifier: SPWebpCollectionViewCell.reuseIdentifier)
         collectionView.register(SPLottieCollectionViewCell.self, forCellWithReuseIdentifier: SPLottieCollectionViewCell.reuseIdentifier)
 		collectionView.register(RLottieCollectionViewCell.self, forCellWithReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier)
+		collectionView.register(RLottieMetalCollectionViewCell.self, forCellWithReuseIdentifier: RLottieMetalCollectionViewCell.reuseIdentifier)
         
         collectionView.delegate = self
         
@@ -150,6 +152,13 @@ class SPCollectionViewController: UICollectionViewController {
 					withReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier,
 					for: indexPath
 				) as! RLottieCollectionViewCell
+				cell.configure(with: item.url)
+				return cell
+			case .rlottieMetal:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: RLottieMetalCollectionViewCell.reuseIdentifier,
+					for: indexPath
+				) as! RLottieMetalCollectionViewCell
 				cell.configure(with: item.url)
 				return cell
             }
@@ -212,6 +221,8 @@ class SPCollectionViewController: UICollectionViewController {
         case .lottie:
             urls = loadLottieURLs()
 		case .rlottie:
+			urls = loadRlottieURLs()
+		case .rlottieMetal:
 			urls = loadRlottieURLs()
         }
         
@@ -581,10 +592,20 @@ class SPCollectionViewController: UICollectionViewController {
 
 extension SPCollectionViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        // Prefetch images for upcoming cells using SDWebImage
+        // Only prefetch actual image URLs (WebP), not Lottie/TGS/JSON files
+        // SDWebImage will try to decode TGS/JSON as images, causing warnings
         let urlsToPrefetch = indexPaths.compactMap { indexPath -> URL? in
             guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
-            return item.url
+            let url = item.url
+            let pathExtension = url.pathExtension.lowercased()
+            
+            // Only prefetch image formats that SDWebImage can handle
+            // Skip .tgs, .json, and other non-image formats
+            if pathExtension == "tgs" || pathExtension == "json" || pathExtension.isEmpty {
+                return nil
+            }
+            
+            return url
         }
         
         if !urlsToPrefetch.isEmpty {

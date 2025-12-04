@@ -28,6 +28,11 @@ class ViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
+	private lazy var rlottieMetalButton: UIButton = {
+		let button = UIButton(type: .system)
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
+	}()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -46,16 +51,19 @@ class ViewController: UIViewController {
 		webpButton.setTitle("Present WebP Controller", for: .normal)
 		lottieButton.setTitle("Present Lottie Controller", for: .normal)
 		rlottieButton.setTitle("Present Rlottie Controller", for: .normal)
+		rlottieMetalButton.setTitle("Present rlottieMetal", for: .normal)
 		
 		webpButton.addTarget(self, action: #selector(presentWebpController), for: .touchUpInside)
 		lottieButton.addTarget(self, action: #selector(presentLottieController), for: .touchUpInside)
 		rlottieButton.addTarget(self, action: #selector(presentRlottieController), for: .touchUpInside)
+		rlottieMetalButton.addTarget(self, action: #selector(presentRlottieMetal), for: .touchUpInside)
 	}
 	
 	private func setupUI() {
 		view.addSubview(webpButton)
 		view.addSubview(lottieButton)
 		view.addSubview(rlottieButton)
+		view.addSubview(rlottieMetalButton)
 		
 		NSLayoutConstraint.activate([
 			webpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -65,7 +73,10 @@ class ViewController: UIViewController {
 			lottieButton.topAnchor.constraint(equalTo: webpButton.bottomAnchor, constant: 20),
 			
 			rlottieButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			rlottieButton.topAnchor.constraint(equalTo: lottieButton.bottomAnchor, constant: 20)
+			rlottieButton.topAnchor.constraint(equalTo: lottieButton.bottomAnchor, constant: 20),
+			
+			rlottieMetalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			rlottieMetalButton.topAnchor.constraint(equalTo: rlottieButton.bottomAnchor, constant: 20)
 		])
 	}
 	
@@ -137,6 +148,34 @@ class ViewController: UIViewController {
 	private func presentRlottieController() {
 		let rlottieController = SPCollectionViewController()
 		rlottieController.stickerMode = .rlottie
+		rlottieController.cellsPerRow = 5
+		
+		// Configure for bottom sheet presentation (sticker pack style)
+		if #available(iOS 15.0, *) {
+			if let sheet = rlottieController.sheetPresentationController {
+				
+				// Create custom detent for keyboard-like height
+				let keyboardHeight: CGFloat = 300
+				
+				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
+					keyboardHeight
+				}
+				
+				// Configure sheet
+				sheet.detents = [keyboardHeightDetent]
+				sheet.preferredCornerRadius = 16
+				sheet.prefersGrabberVisible = true
+			}
+		}
+		
+		// Present as modal bottom sheet
+		present(rlottieController, animated: true)
+	}
+	
+	@objc
+	private func presentRlottieMetal() {
+		let rlottieController = SPCollectionViewController()
+		rlottieController.stickerMode = .rlottieMetal
 		rlottieController.cellsPerRow = 5
 		
 		// Configure for bottom sheet presentation (sticker pack style)
