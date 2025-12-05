@@ -13,7 +13,11 @@ class FullScreenCollectionViewController: UICollectionViewController {
 	var visibleRows: Int = 4 {
 		didSet { updateLayout() }
 	}
-//	var visibleRows: Int = 4
+	var cellMode: CellMode = .lottie
+	enum CellMode {
+		case rlottie
+		case lottie
+	}
 
 	private enum Section { case main }
 
@@ -89,6 +93,11 @@ class FullScreenCollectionViewController: UICollectionViewController {
 			RLottieCollectionViewCell.self,
 			forCellWithReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier
 		)
+		
+		collectionView.register(
+			SPLottieCollectionViewCell.self,
+			forCellWithReuseIdentifier: SPLottieCollectionViewCell.reuseIdentifier
+		)
 	}
 	
 //	override func viewDidLayoutSubviews() {
@@ -112,13 +121,25 @@ class FullScreenCollectionViewController: UICollectionViewController {
 		dataSource = UICollectionViewDiffableDataSource<Section, StickerItem>(
 			collectionView: collectionView
 		) { collectionView, indexPath, item in
-			let cell = collectionView.dequeueReusableCell(
-				withReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier,
-				for: indexPath
-			) as! RLottieCollectionViewCell
+			switch self.cellMode {
+			case .rlottie:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: RLottieCollectionViewCell.reuseIdentifier,
+					for: indexPath
+				) as! RLottieCollectionViewCell
 
-			cell.configure(with: item.url)
-			return cell
+				cell.configure(with: item.url)
+				return cell
+			case .lottie:
+				let cell = collectionView.dequeueReusableCell(
+					withReuseIdentifier: SPLottieCollectionViewCell.reuseIdentifier,
+					for: indexPath
+				) as! SPLottieCollectionViewCell
+
+				cell.configure(with: item.url)
+				return cell
+			}
+			
 		}
 	}
 

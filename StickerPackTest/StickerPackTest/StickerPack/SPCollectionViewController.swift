@@ -237,7 +237,8 @@ class SPCollectionViewController: UICollectionViewController {
         case .webp:
             urls = loadWebPURLs()
         case .lottie:
-            urls = loadLottieURLs()
+//            urls = loadLottieURLs()
+			urls = loadLocalLottieURLs()
 		case .rlottie:
 //			urls = loadRlottieURLs()
 			urls = loadLocalLottieURLs()
