@@ -61,8 +61,8 @@ class ViewController: UIViewController {
 		webpButton.setTitle("Present WebP Controller", for: .normal)
 		lottieButton.setTitle("Present Lottie Controller", for: .normal)
 		rlottieButton.setTitle("Present Rlottie Controller", for: .normal)
-//		rlottieMetalButton.setTitle("Present rlottieMetal", for: .normal)
-		rlottieMetalButton.setTitle("Present lottie-ios full", for: .normal)
+		rlottieMetalButton.setTitle("Present rlottieMetal", for: .normal)
+//		rlottieMetalButton.setTitle("Present lottie-ios full", for: .normal)
 		rlottieButtonv2.setTitle("Present rlottie v2", for: .normal)
 		rlottieFastButton.setTitle("Present rlottie fast", for: .normal)
 		
@@ -195,41 +195,41 @@ class ViewController: UIViewController {
 		present(rlottieController, animated: true)
 	}
 	
-//	@objc
-//	private func presentRlottieMetal() {
-//		let rlottieController = SPCollectionViewController()
-//		rlottieController.stickerMode = .rlottieMetal
-//		rlottieController.cellsPerRow = 5
-//		
-//		// Configure for bottom sheet presentation (sticker pack style)
-//		if #available(iOS 15.0, *) {
-//			if let sheet = rlottieController.sheetPresentationController {
-//				
-//				// Create custom detent for keyboard-like height
-//				let keyboardHeight: CGFloat = 300
-//				
-//				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
-//					keyboardHeight
-//				}
-//				
-//				// Configure sheet
-//				sheet.detents = [keyboardHeightDetent]
-//				sheet.preferredCornerRadius = 16
-//				sheet.prefersGrabberVisible = true
-//			}
-//		}
-//		
-//		// Present as modal bottom sheet
-//		present(rlottieController, animated: true)
-//	}
-	
 	@objc
 	private func presentRlottieMetal() {
-		let rlottieController = FullScreenCollectionViewController()
-		rlottieController.cellMode = .lottie
+		let rlottieController = SPCollectionViewController()
+		rlottieController.stickerMode = .rlottieMetal
+		rlottieController.cellsPerRow = 5
 		
-		navigationController?.pushViewController(rlottieController, animated: true)
+		// Configure for bottom sheet presentation (sticker pack style)
+		if #available(iOS 15.0, *) {
+			if let sheet = rlottieController.sheetPresentationController {
+				
+				// Create custom detent for keyboard-like height
+				let keyboardHeight: CGFloat = 300
+				
+				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
+					keyboardHeight
+				}
+				
+				// Configure sheet
+				sheet.detents = [keyboardHeightDetent]
+				sheet.preferredCornerRadius = 16
+				sheet.prefersGrabberVisible = true
+			}
+		}
+		
+		// Present as modal bottom sheet
+		present(rlottieController, animated: true)
 	}
+	
+//	@objc
+//	private func presentRlottieMetal() {
+//		let rlottieController = FullScreenCollectionViewController()
+//		rlottieController.cellMode = .lottie
+//		
+//		navigationController?.pushViewController(rlottieController, animated: true)
+//	}
 	
 	@objc
 	private func presentRlottiev2() {
@@ -261,35 +261,35 @@ class ViewController: UIViewController {
 	
 	@objc
 	private func presentrlottiefast() {
-//		let rlottieController = SPCollectionViewController()
-//		rlottieController.stickerMode = .rlottieFast
-//		rlottieController.cellsPerRow = 5
-		let rlottieController = FullScreenCollectionViewController()
-		rlottieController.cellMode = .rlottie
+		let rlottieController = SPCollectionViewController()
+		rlottieController.stickerMode = .rlottieFast
+		rlottieController.cellsPerRow = 5
+//		let rlottieController = FullScreenCollectionViewController()
+//		rlottieController.cellMode = .rlottie
 //		let rlottieController = SPCollectionViewController()
 //		rlottieController.stickerMode = .rlottie
 //		rlottieController.cellsPerRow = 2
 		
 		// Configure for bottom sheet presentation (sticker pack style)
-//		if #available(iOS 15.0, *) {
-//			if let sheet = rlottieController.sheetPresentationController {
-//				
-//				// Create custom detent for keyboard-like height
-//				let keyboardHeight: CGFloat = 300
-//				
-//				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
-//					keyboardHeight
-//				}
-//				
-//				// Configure sheet
-//				sheet.detents = [keyboardHeightDetent]
-//				sheet.preferredCornerRadius = 16
-//				sheet.prefersGrabberVisible = true
-//			}
-//		}
+		if #available(iOS 15.0, *) {
+			if let sheet = rlottieController.sheetPresentationController {
+				
+				// Create custom detent for keyboard-like height
+				let keyboardHeight: CGFloat = 300
+				
+				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
+					keyboardHeight
+				}
+				
+				// Configure sheet
+				sheet.detents = [keyboardHeightDetent]
+				sheet.preferredCornerRadius = 16
+				sheet.prefersGrabberVisible = true
+			}
+		}
 		
 		// Present as modal bottom sheet
-//		present(rlottieController, animated: true)
-		navigationController?.pushViewController(rlottieController, animated: true)
+		present(rlottieController, animated: true)
+//		navigationController?.pushViewController(rlottieController, animated: true)
 	}
 }

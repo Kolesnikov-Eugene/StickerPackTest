@@ -238,16 +238,22 @@ class SPCollectionViewController: UICollectionViewController {
             urls = loadWebPURLs()
         case .lottie:
 //            urls = loadLottieURLs()
-			urls = loadLocalLottieURLs()
+//			urls = loadLocalLottieURLs()
+			urls = loadLottieURLs()
 		case .rlottie:
 //			urls = loadRlottieURLs()
-			urls = loadLocalLottieURLs()
+//			urls = loadLocalLottieURLs()
+			urls = loadLottieURLs()
 		case .rlottieMetal:
-			urls = loadRlottieURLs()
+//			urls = loadRlottieURLs()
+			urls = loadLottieURLs()
 		case .rlottiev2:
-			urls = loadRlottieURLs()
+//			urls = loadRlottieURLs()
+//			urls = loadLocalLottieURLs()
+			urls = loadLottieURLs()
 		case .rlottieFast:
-			urls = loadRlottieURLs()
+//			urls = loadRlottieURLs()
+			urls = loadLottieURLs()
         }
         
         // Store all URLs (like receiving from backend)
@@ -417,46 +423,54 @@ class SPCollectionViewController: UICollectionViewController {
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test3.tgs",
 //			"file:///Users/e.a.kolesnikov/webp_stickers/test4.tgs",
 			
-			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+			"http://192.168.1.5/images/duck/a1.json",
+			"http://192.168.1.5/images/duck/white-heavy-check-mark.json",
+			"http://192.168.1.5/images/duck/poo.json",
+			"http://192.168.1.5/images/duck/partying-face.json",
+			"http://192.168.1.5/images/duck/face-with-stuck-out-tongue-and-wink.json",
+			"http://192.168.1.5/images/duck/eyes.json",
+			"http://192.168.1.5/images/duck/smiling-face-with-horns.json"
 			
-			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
-			
-			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
-			
-			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
-			
-			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
-			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
-			
+//			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+//			
+//			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+//			
+//			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+//			
+//			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+//			
+//			"file:///Users/e.a.kolesnikov/webp_stickers/angry.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/flashbacks.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/hi.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/like.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/money.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/smoke.json",
+//			"file:///Users/e.a.kolesnikov/webp_stickers/win.json",
+//			
         ]
         
         // Add remote URLs

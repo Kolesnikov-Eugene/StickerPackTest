@@ -46,9 +46,10 @@ final class RLottieAnimation {
 		guard let ref = ref else { return nil }
 		
 //		let scale = 1.5
+		let _scale = UIScreen.main.scale
 		
-		let width = Int(size.width * scale)
-		let height = Int(size.height * scale)
+		let width = Int(size.width * _scale)
+		let height = Int(size.height * _scale)
 //		let width = Int(150)
 //		let height = Int(150)
 		
