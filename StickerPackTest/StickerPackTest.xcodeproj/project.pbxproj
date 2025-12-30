@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6ABC6FBF2EE240FD005D7E4B /* rlottie.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABC6FBE2EE240FD005D7E4B /* rlottie.xcframework */; };
+		6AB37E362EEC1FDE009144F5 /* rlottie.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB37E352EEC1FDE009144F5 /* rlottie.xcframework */; };
 		FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StickerPackTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A19FC072EDEE56A00E66546 /* StickerPackTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerPackTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB3760A2EEAF534009144F5 /* rlottie.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = rlottie.xcframework; path = "../../../rlottie-telegram/rlottie/build/xcframework/xcode_project/rlottie.xcframework"; sourceTree = "<group>"; };
+		6AB37E352EEC1FDE009144F5 /* rlottie.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = rlottie.xcframework; path = "../../../rlottie-telegram/rlottie-telegram-fork/rlottie/build/xcframework/xcode_project/rlottie.xcframework"; sourceTree = "<group>"; };
 		6ABC6ED72EE076D1005D7E4B /* rlottie.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = rlottie.xcframework; path = ../../rlottie/build/xcframework/xcode_project/rlottie.xcframework; sourceTree = "<group>"; };
 		6ABC6FBE2EE240FD005D7E4B /* rlottie.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = rlottie.xcframework; path = ../../../test_rlottie/rlottie/build/xcframework/xcode_project/rlottie.xcframework; sourceTree = "<group>"; };
 		84D4900528341EEED624F006 /* Pods-StickerPackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickerPackTest.release.xcconfig"; path = "Target Support Files/Pods-StickerPackTest/Pods-StickerPackTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,7 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC6EFB028EB55DEFFB6CDB7A /* Pods_StickerPackTest.framework in Frameworks */,
-				6ABC6FBF2EE240FD005D7E4B /* rlottie.xcframework in Frameworks */,
+				6AB37E362EEC1FDE009144F5 /* rlottie.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +61,8 @@
 			children = (
 				6ABC6ED72EE076D1005D7E4B /* rlottie.xcframework */,
 				6ABC6FBE2EE240FD005D7E4B /* rlottie.xcframework */,
+				6AB3760A2EEAF534009144F5 /* rlottie.xcframework */,
+				6AB37E352EEC1FDE009144F5 /* rlottie.xcframework */,
 				4C21D989D3C5C72AEB9BCE8B /* Pods_StickerPackTest.framework */,
 			);
 			name = Frameworks;

@@ -43,6 +43,11 @@ class ViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
+	private lazy var tglottiebtn: UIButton = {
+		let button = UIButton(type: .system)
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
+	}()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,6 +70,7 @@ class ViewController: UIViewController {
 //		rlottieMetalButton.setTitle("Present lottie-ios full", for: .normal)
 		rlottieButtonv2.setTitle("Present rlottie v2", for: .normal)
 		rlottieFastButton.setTitle("Present rlottie fast", for: .normal)
+		tglottiebtn.setTitle("Present tg lottie fast", for: .normal)
 		
 		webpButton.addTarget(self, action: #selector(presentWebpController), for: .touchUpInside)
 		lottieButton.addTarget(self, action: #selector(presentLottieController), for: .touchUpInside)
@@ -72,6 +78,7 @@ class ViewController: UIViewController {
 		rlottieMetalButton.addTarget(self, action: #selector(presentRlottieMetal), for: .touchUpInside)
 		rlottieButtonv2.addTarget(self, action: #selector(presentRlottiev2), for: .touchUpInside)
 		rlottieFastButton.addTarget(self, action: #selector(presentrlottiefast), for: .touchUpInside)
+		tglottiebtn.addTarget(self, action: #selector(presentTgLottie), for: .touchUpInside)
 	}
 	
 	private func setupUI() {
@@ -81,6 +88,7 @@ class ViewController: UIViewController {
 		view.addSubview(rlottieMetalButton)
 		view.addSubview(rlottieButtonv2)
 		view.addSubview(rlottieFastButton)
+		view.addSubview(tglottiebtn)
 		
 		NSLayoutConstraint.activate([
 			webpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -100,6 +108,9 @@ class ViewController: UIViewController {
 			
 			rlottieFastButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			rlottieFastButton.topAnchor.constraint(equalTo: rlottieButtonv2.bottomAnchor, constant: 20),
+			
+			tglottiebtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			tglottiebtn.topAnchor.constraint(equalTo: rlottieFastButton.bottomAnchor, constant: 20),
 		])
 	}
 	
@@ -143,7 +154,7 @@ class ViewController: UIViewController {
 	private func presentLottieController() {
 		let lottieController = SPCollectionViewController()
 		lottieController.stickerMode = .lottie
-		lottieController.cellsPerRow = 5
+		lottieController.cellsPerRow = 4
 		
 		// Configure for bottom sheet presentation (sticker pack style)
 		if #available(iOS 15.0, *) {
@@ -291,5 +302,98 @@ class ViewController: UIViewController {
 		// Present as modal bottom sheet
 		present(rlottieController, animated: true)
 //		navigationController?.pushViewController(rlottieController, animated: true)
+	}
+	
+	@objc
+	private func presentTgLottie() {
+		let vc = AnimatedStickerCollectionViewController(
+			stickerFilePaths: [ Bundle.main.path(forResource: "a1", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a2", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a3", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a4", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a5", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a6", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a7", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a8", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a9", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a10", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a11", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a12", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a13", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a14", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a15", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a16", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a17", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "a18", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d1", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d2", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d3", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d4", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d5", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d6", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d7", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d8", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d9", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d10", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d11", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d12", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d13", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d14", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d15", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d16", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d17", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d18", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d19", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "d20", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s1", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s2", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s3", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s4", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s5", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s6", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s7", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s8", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s9", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s10", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s11", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s12", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s13", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s14", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s15", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s16", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s17", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s18", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s19", ofType: "tgs") ?? "",
+								Bundle.main.path(forResource: "s20", ofType: "tgs") ?? "",
+//								Bundle.main.path(forResource: "poo", ofType: "json") ?? "",
+//								Bundle.main.path(forResource: "partying-face", ofType: "json") ?? "",
+								
+							  ]
+		)
+//		navigationController?.pushViewController(vc, animated: true)
+//		let rlottieController = SPCollectionViewController()
+//		rlottieController.stickerMode = .tglottie
+//		rlottieController.cellsPerRow = 5
+//		
+//		// Configure for bottom sheet presentation (sticker pack style)
+		if #available(iOS 15.0, *) {
+			if let sheet = vc.sheetPresentationController {
+				
+				// Create custom detent for keyboard-like height
+				let keyboardHeight: CGFloat = 300
+				
+				let keyboardHeightDetent = UISheetPresentationController.Detent.custom { context in
+					keyboardHeight
+				}
+				
+				// Configure sheet
+				sheet.detents = [keyboardHeightDetent]
+				sheet.preferredCornerRadius = 16
+				sheet.prefersGrabberVisible = true
+			}
+		}
+		
+		// Present as modal bottom sheet
+		present(vc, animated: true)
 	}
 }

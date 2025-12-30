@@ -38,12 +38,18 @@ vertex VertexOut vertex_main(uint vertexID [[vertex_id]]) {
     return out;
 }
 
+//fragment float4 fragment_main(VertexOut in [[stage_in]],
+//                              texture2d<float> texture [[texture(0)]]) {
+//    constexpr sampler s(coord::normalized, filter::linear, address::clamp_to_edge);
+//    float4 color = texture.sample(s, in.texCoord);
+//    
+//    // Premultiply alpha for proper blending
+//    return float4(color.rgb * color.a, color.a);
+//}
+
 fragment float4 fragment_main(VertexOut in [[stage_in]],
-                              texture2d<float> texture [[texture(0)]]) {
-    constexpr sampler s(coord::normalized, filter::linear, address::clamp_to_edge);
-    float4 color = texture.sample(s, in.texCoord);
-    
-    // Premultiply alpha for proper blending
-    return float4(color.rgb * color.a, color.a);
+							  texture2d<float> texture [[texture(0)]]) {
+	constexpr sampler s(coord::normalized, filter::linear, address::clamp_to_edge);
+	return texture.sample(s, in.texCoord);
 }
 

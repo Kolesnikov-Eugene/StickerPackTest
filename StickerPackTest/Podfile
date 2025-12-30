@@ -11,6 +11,8 @@ target 'StickerPackTest' do
   # Lottie
   pod 'lottie-ios'
 
+  pod 'Texture'
+
   # Pods for StickerPackTest
 
 end

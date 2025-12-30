@@ -155,25 +155,34 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		startAnimation()
 	}
 	
-	private func startAnimation() {
+	func startAnimation() {
 		stopAnimation()
 		
 		guard animation != nil else { return }
 		
 		// Render first frame
-		tick()
+//		tick()
+		SharedDisplayLinkAnimator.shared.add(self)
 		
-		displayLink = CADisplayLink(target: self, selector: #selector(tick))
+//		displayLink = CADisplayLink(target: self, selector: #selector(tick))
 //		displayLink = CADisplayLink(target: self, selector: #selector(tick(link:)))
 		
-		displayLink?.add(to: .main, forMode: .common)
+//		displayLink?.add(to: .main, forMode: .common)
 //		tick(link: displayLink!)
 	}
 	
-	private func stopAnimation() {
-		displayLink?.invalidate()
-		displayLink = nil
+	func stopAnimation() {
+		print("stop animation")
+//		displayLink?.invalidate()
+//		displayLink = nil
+		imageView.image = nil
 		frameIndex = 0
+		SharedDisplayLinkAnimator.shared.remove(self)
+	}
+	
+	internal func _tickerTick() {
+//		guard isPlaying, !isPaused else { return }
+		tick()
 	}
 	
 	@objc private func tick() {
@@ -181,7 +190,7 @@ class RLottieCollectionViewCell: UICollectionViewCell {
 		
 		frameIndex = (frameIndex + 1) % anim.frameCount
 		
-		print("frame index - \(frameIndex)")
+//		print("frame index - \(frameIndex)")
 		let size = contentView.bounds.size
 		guard size.width > 0 && size.height > 0 else {
 			// If size is zero, use a default size
